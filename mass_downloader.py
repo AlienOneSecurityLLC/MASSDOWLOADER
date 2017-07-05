@@ -26,7 +26,7 @@ from functools import partial
 """Mass file Downloader for the Syrian Bluecoat data set"""
 
 
-WORKING_DIR = "/Users/alienone/Programming/Data/Syria"
+WORKING_DIR = "/media/alienone/4612-7C6E/Data/Syria"
 
 
 def md5sum(filename):
@@ -76,7 +76,7 @@ def get_links(url_name, tuple_suffixes):
     """
     url_get = requests.get(url_name)
     if url_get.status_code == 200:
-        soup = BeautifulSoup(url_get.text)
+        soup = BeautifulSoup(url_get.text, 'lxml')
         for href_link in soup.findAll('a', href=True):
             if href_link['href'].endswith(tuple_suffixes):
                 yield href_link['href']
